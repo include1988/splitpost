@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Splitpost — One Video. Weeks of Content.</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #08090a;
+  --white: #fafafa;
+  --cream: #FFF8F3;
+  --accent: #F26522;
+  --accent-light: #FF8246;
+  --accent-deep: #D9530E;
+  --accent-soft: #FFF0E6;
+  --accent-glow: rgba(242,101,34,0.10);
+  --accent-glow-strong: rgba(242,101,34,0.18);
+  --green: #16A34A;
+  --green-soft: #DCFCE7;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f3f1;
+  --gray-200: #e5e5e0;
+  --gray-300: #d4d4cf;
+  --gray-400: #9c9c95;
+  --gray-500: #737370;
+  --gray-600: #5a5a57;
+  --gray-700: #3d3d3a;
+  --gray-800: #27272a;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:rgba(250,250,250,0.85);border-bottom:1px solid rgba(0,0,0,0.04)}
+.logo{font-family:var(--serif);font-size:26px;letter-spacing:-0.5px;color:var(--black);text-decoration:none;display:flex;align-items:center;gap:8px}
+.logo-icon{width:32px;height:32px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;color:white;font-size:17px;font-weight:700;font-family:var(--sans);transform:rotate(-3deg)}
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{text-decoration:none;color:var(--gray-600);font-size:14px;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:var(--black)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:50px;font-family:var(--sans);font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;border:none;transition:all 0.3s cubic-bezier(0.4,0,0.2,1)}
+.btn-primary{background:var(--accent);color:white}
+.btn-primary:hover{background:var(--accent-deep);transform:translateY(-1px);box-shadow:0 8px 30px rgba(242,101,34,0.28)}
+.btn-dark{background:var(--black);color:var(--white)}
+.btn-dark:hover{background:var(--gray-800);transform:translateY(-1px);box-shadow:0 8px 30px rgba(0,0,0,0.15)}
+.btn-ghost{background:transparent;color:var(--black);border:1.5px solid var(--gray-200)}
+.btn-ghost:hover{border-color:var(--black)}
+.btn-white{background:white;color:var(--accent-deep);font-weight:700}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,0.15)}
+
+/* HERO */
+.hero{padding:150px 40px 70px;max-width:1200px;margin:0 auto;text-align:center;position:relative}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;background:var(--accent-glow);border:1px solid rgba(242,101,34,0.15);border-radius:50px;font-size:13px;font-weight:600;color:var(--accent);margin-bottom:28px;animation:fadeInDown 0.8s ease}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{font-family:var(--serif);font-size:clamp(44px,6.5vw,80px);line-height:1.05;letter-spacing:-2px;color:var(--black);margin-bottom:24px;animation:fadeInUp 0.8s ease 0.1s both}
+.hero h1 em{font-style:italic;color:var(--accent);position:relative}
+.hero h1 em::after{content:'';position:absolute;bottom:2px;left:-2px;right:-2px;height:10px;background:var(--accent-glow-strong);border-radius:4px;z-index:-1}
+.hero-sub{font-size:19px;line-height:1.65;color:var(--gray-600);max-width:600px;margin:0 auto 40px;animation:fadeInUp 0.8s ease 0.2s both}
+.hero-ctas{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:14px;animation:fadeInUp 0.8s ease 0.3s both}
+.hero-note{font-size:13px;color:var(--gray-400);animation:fadeInUp 0.8s ease 0.4s both}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+
+/* INPUT STRIP */
+.input-strip{display:flex;align-items:center;justify-content:center;gap:32px;padding:24px 40px;animation:fadeInUp 0.8s ease 0.45s both}
+.input-type{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--gray-500);font-weight:500}
+.input-type .it-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;background:var(--gray-100);border:1px solid var(--gray-200)}
+
+/* DEMO */
+.demo-section{padding:20px 40px 100px;max-width:1100px;margin:0 auto;animation:fadeInUp 1s ease 0.55s both}
+.demo-card{background:var(--gray-50);border-radius:20px;border:1px solid var(--gray-200);overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.06)}
+.demo-topbar{padding:14px 20px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--gray-200);background:var(--gray-100)}
+.demo-dot{width:10px;height:10px;border-radius:50%}
+.demo-dot:nth-child(1){background:#FF605C}
+.demo-dot:nth-child(2){background:#FFBD44}
+.demo-dot:nth-child(3){background:#00CA4E}
+.demo-content{display:grid;grid-template-columns:1fr 1.5fr;min-height:520px}
+.demo-input{padding:32px;border-right:1px solid var(--gray-200);display:flex;flex-direction:column;gap:16px;background:white}
+.demo-input-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;color:var(--gray-400)}
+.demo-input-types{display:flex;gap:6px;flex-wrap:wrap}
+.demo-input-chip{padding:5px 10px;background:var(--gray-50);border:1px solid var(--gray-200);border-radius:6px;font-size:11px;color:var(--gray-500);font-weight:500}
+.demo-input-chip.active{background:var(--accent-soft);border-color:rgba(242,101,34,0.2);color:var(--accent-deep);font-weight:600}
+.demo-url-bar{display:flex;align-items:center;gap:10px;background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);padding:12px 16px}
+.demo-url-icon{font-size:17px;flex-shrink:0}
+.demo-url-text{font-size:13px;color:var(--gray-500);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.demo-video-thumb{background:linear-gradient(135deg,#0f172a,#1e293b);border-radius:var(--radius-sm);height:130px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.demo-video-thumb::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(242,101,34,0.12),transparent)}
+.demo-play-btn{width:44px;height:44px;background:rgba(255,255,255,0.12);backdrop-filter:blur(10px);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:17px;border:1px solid rgba(255,255,255,0.15)}
+.demo-meta{display:flex;gap:14px;font-size:11px;color:var(--gray-400)}
+.demo-meta span{display:flex;align-items:center;gap:4px}
+.demo-estimate{background:var(--accent-soft);border:1px solid rgba(242,101,34,0.12);border-radius:8px;padding:12px 16px;font-size:12px;color:var(--accent-deep);font-weight:500;line-height:1.5}
+.demo-estimate strong{font-weight:700}
+.demo-output{padding:24px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;background:var(--gray-50);overflow-y:auto}
+.demo-output::before{content:'';position:absolute;top:-80px;right:-80px;width:220px;height:220px;background:radial-gradient(circle,var(--accent-glow),transparent);border-radius:50%}
+.demo-output-label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;color:var(--accent);display:flex;align-items:center;gap:6px;margin-bottom:2px}
+.demo-output-label::before{content:'⚡';font-size:11px}
+.output-card{background:white;border-radius:10px;padding:12px 14px;border:1px solid var(--gray-200);display:flex;align-items:center;gap:11px;position:relative;z-index:1;transition:all 0.15s}
+.output-card:hover{transform:translateX(3px);box-shadow:0 2px 12px rgba(0,0,0,0.04);border-color:var(--accent-soft)}
+.output-icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.oc-tw{background:#E8F4FD} .oc-th{background:#E8E8E8} .oc-li{background:#E8F0FE}
+.oc-ig{background:#FDE8F0} .oc-fb{background:#E8EEFE} .oc-tk{background:#F0E8E8}
+.oc-pi{background:#FCE8E8} .oc-bl{background:#E8F8F0} .oc-nl{background:#FFF3E8}
+.oc-gm{background:#E8F4E8} .oc-cl{background:#EDE9FE}
+.output-text h4{font-size:12px;font-weight:600;margin-bottom:1px}
+.output-text p{font-size:10px;color:var(--gray-400);line-height:1.3}
+.output-copy{margin-left:auto;font-size:10px;color:var(--accent);font-weight:600;white-space:nowrap;opacity:0;transition:opacity 0.15s}
+.output-card:hover .output-copy{opacity:1}
+.output-divider{font-size:9px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gray-300);font-weight:700;padding:4px 0 0;margin-top:2px}
+
+/* PROOF BAR */
+.proof-bar{padding:48px 40px;text-align:center;border-top:1px solid var(--gray-200);border-bottom:1px solid var(--gray-200)}
+.proof-bar p{font-size:12px;text-transform:uppercase;letter-spacing:2px;font-weight:600;color:var(--gray-400);margin-bottom:20px}
+.proof-logos{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;opacity:0.3}
+.proof-logos span{font-size:18px;font-weight:700;letter-spacing:-0.5px;color:var(--gray-800)}
+
+/* SECTION HELPERS */
+.section-label{font-size:12px;text-transform:uppercase;letter-spacing:2px;font-weight:700;color:var(--accent);margin-bottom:14px}
+.section-title{font-family:var(--serif);font-size:clamp(34px,4.5vw,54px);line-height:1.1;letter-spacing:-1px;margin-bottom:20px;max-width:620px}
+.section-sub{font-size:17px;line-height:1.6;color:var(--gray-600);margin-bottom:48px;max-width:560px}
+
+/* COMPARISON */
+.compare-section{padding:100px 40px;max-width:900px;margin:0 auto}
+.compare-table{background:white;border-radius:var(--radius);border:1px solid var(--gray-200);overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.04)}
+.compare-row{display:grid;grid-template-columns:1.2fr 1fr 1fr;border-bottom:1px solid var(--gray-100)}
+.compare-row:last-child{border-bottom:none}
+.compare-row.header{background:var(--gray-50);font-size:11px;text-transform:uppercase;letter-spacing:1px;font-weight:700;color:var(--gray-400)}
+.compare-row.header .compare-cell:nth-child(3){color:var(--accent)}
+.compare-cell{padding:15px 22px;font-size:13px;display:flex;align-items:center;gap:8px}
+.compare-cell:not(:last-child){border-right:1px solid var(--gray-100)}
+.compare-cell.label{font-weight:500;color:var(--gray-600);font-size:13px}
+.compare-cell .x{color:#EF4444;font-weight:700}
+.compare-cell .check{color:var(--green);font-weight:700}
+.compare-highlight{background:var(--accent-glow)!important}
+.compare-highlight .compare-cell:nth-child(3){font-weight:700;color:var(--accent-deep)}
+
+/* HOW IT WORKS */
+.how-section{padding:100px 40px;max-width:1100px;margin:0 auto}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:36px;position:relative}
+.steps::before{content:'';position:absolute;top:46px;left:16.5%;right:16.5%;height:2px;background:linear-gradient(90deg,var(--accent),var(--gray-200),var(--accent));opacity:0.25}
+.step{text-align:center;position:relative}
+.step-number{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:700;margin:0 auto 24px;position:relative;z-index:2}
+.step:nth-child(1) .step-number{background:var(--accent);color:white;box-shadow:0 6px 24px rgba(242,101,34,0.3)}
+.step:nth-child(2) .step-number{background:var(--black);color:white}
+.step:nth-child(3) .step-number{background:linear-gradient(135deg,var(--accent),var(--accent-light));color:white;box-shadow:0 6px 24px rgba(242,101,34,0.25)}
+.step-icon{font-size:30px;margin-bottom:16px;display:block}
+.step h3{font-size:19px;font-weight:700;margin-bottom:10px;letter-spacing:-0.3px}
+.step p{font-size:14px;line-height:1.6;color:var(--gray-600);max-width:280px;margin:0 auto}
+
+/* SHOWCASE */
+.showcase-section{padding:100px 40px;background:var(--black);color:var(--white);position:relative;overflow:hidden}
+.showcase-section::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(242,101,34,0.1),transparent);border-radius:50%}
+.showcase-section::after{content:'';position:absolute;bottom:-150px;left:-150px;width:400px;height:400px;background:radial-gradient(circle,rgba(242,101,34,0.06),transparent);border-radius:50%}
+.showcase-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1}
+.showcase-section .section-title{color:var(--white)}
+.showcase-section .section-sub{color:rgba(255,255,255,0.45)}
+.showcase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.showcase-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:var(--radius);padding:26px;transition:all 0.25s;backdrop-filter:blur(10px)}
+.showcase-card:hover{background:rgba(255,255,255,0.07);border-color:rgba(242,101,34,0.35);transform:translateY(-3px)}
+.showcase-card-icon{font-size:24px;margin-bottom:14px;display:block}
+.showcase-card h3{font-size:15px;font-weight:700;margin-bottom:7px}
+.showcase-card p{font-size:13px;line-height:1.6;color:rgba(255,255,255,0.45)}
+.showcase-card .platform-tag{display:inline-block;margin-top:12px;padding:4px 11px;border-radius:50px;font-size:10px;font-weight:700;background:rgba(242,101,34,0.15);color:var(--accent-light);letter-spacing:0.3px}
+.showcase-card .new-tag{background:rgba(22,163,74,0.15);color:#4ADE80}
+
+/* SUPERPOWERS */
+.superpowers-section{padding:100px 40px;background:var(--cream)}
+.superpowers-inner{max-width:1000px;margin:0 auto}
+.superpowers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.superpower-card{background:white;border-radius:var(--radius);padding:32px;border:1px solid var(--gray-200);transition:all 0.25s}
+.superpower-card:hover{border-color:var(--accent);box-shadow:0 8px 32px rgba(242,101,34,0.08);transform:translateY(-3px)}
+.superpower-icon-wrap{width:52px;height:52px;border-radius:14px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px;border:1px solid rgba(242,101,34,0.1)}
+.superpower-text h3{font-size:17px;font-weight:700;margin-bottom:8px;letter-spacing:-0.3px}
+.superpower-text p{font-size:14px;line-height:1.65;color:var(--gray-600)}
+
+/* AUDIENCE */
+.audience-section{padding:100px 40px;max-width:1100px;margin:0 auto}
+.audience-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.audience-card{padding:36px;border-radius:var(--radius);border:1px solid var(--gray-200);transition:all 0.25s;overflow:hidden}
+.audience-card:hover{border-color:var(--accent);box-shadow:0 8px 36px rgba(242,101,34,0.08)}
+.audience-emoji{font-size:34px;margin-bottom:18px;display:block}
+.audience-card h3{font-size:18px;font-weight:700;margin-bottom:8px;letter-spacing:-0.3px}
+.audience-card p{font-size:14px;line-height:1.6;color:var(--gray-600)}
+
+/* IMPACT */
+.impact-section{padding:100px 40px;background:var(--black);color:var(--white);position:relative}
+.impact-inner{max-width:1000px;margin:0 auto}
+.impact-section .section-title{color:white}
+.impact-section .section-sub{color:rgba(255,255,255,0.5)}
+.impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px}
+.impact-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:32px;transition:all 0.25s}
+.impact-card:hover{background:rgba(255,255,255,0.06);border-color:rgba(242,101,34,0.3);transform:translateY(-2px)}
+.impact-card-num{font-family:var(--serif);font-size:42px;color:var(--accent);letter-spacing:-1px;margin-bottom:16px;line-height:1}
+.impact-card-text h4{font-size:15px;font-weight:700;margin-bottom:8px;line-height:1.3}
+.impact-card-text p{font-size:13px;line-height:1.65;color:rgba(255,255,255,0.45)}
+.impact-bottom{text-align:center;padding:36px 40px;background:rgba(242,101,34,0.08);border:1px solid rgba(242,101,34,0.15);border-radius:14px}
+.impact-bottom p{font-size:16px;line-height:1.6;color:rgba(255,255,255,0.7);max-width:600px;margin:0 auto}
+.impact-bottom em{color:var(--accent);font-style:italic;font-weight:600}
+
+/* MATH */
+.math-section{padding:80px 40px;background:var(--cream);text-align:center}
+.math-inner{max-width:860px;margin:0 auto}
+.math-equation{font-family:var(--serif);font-size:clamp(28px,4.5vw,56px);letter-spacing:-1px;margin-bottom:20px;line-height:1.2}
+.math-equation .num-accent{color:var(--accent);font-style:italic}
+.math-sub{font-size:17px;color:var(--gray-600);line-height:1.6;max-width:540px;margin:0 auto}
+.math-detail{margin-top:36px;display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+.math-stat{text-align:center}
+.math-stat-num{font-family:var(--serif);font-size:40px;color:var(--accent);letter-spacing:-1px}
+.math-stat-label{font-size:13px;color:var(--gray-500);margin-top:4px;font-weight:500}
+
+/* PRICING */
+.pricing-section{padding:100px 40px;max-width:1100px;margin:0 auto}
+.pricing-toggle{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:48px}
+.pricing-toggle span{font-size:14px;color:var(--gray-500);font-weight:500}
+.pricing-toggle span.active{color:var(--black);font-weight:700}
+.toggle-pill{width:48px;height:26px;background:var(--accent);border-radius:50px;position:relative;cursor:pointer;border:none;padding:0}
+.toggle-pill::after{content:'';width:20px;height:20px;background:white;border-radius:50%;position:absolute;top:3px;right:3px;transition:transform 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.15)}
+.save-badge{font-size:11px;font-weight:700;color:var(--green);background:var(--green-soft);padding:3px 10px;border-radius:50px}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pricing-card{padding:36px;border-radius:var(--radius);border:1.5px solid var(--gray-200);position:relative;transition:all 0.25s;background:white}
+.pricing-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.07)}
+.pricing-card.featured{border-color:var(--accent);box-shadow:0 8px 40px rgba(242,101,34,0.1)}
+.pricing-card.featured::before{content:'Most Popular';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--accent);color:white;padding:4px 16px;border-radius:50px;font-size:11px;font-weight:700;letter-spacing:0.3px}
+.pricing-tier{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;font-weight:700;color:var(--gray-400);margin-bottom:6px}
+.pricing-price{font-family:var(--serif);font-size:48px;letter-spacing:-2px;margin-bottom:4px}
+.pricing-price span{font-size:16px;font-family:var(--sans);color:var(--gray-400);font-weight:400;letter-spacing:0}
+.pricing-desc{font-size:13px;color:var(--gray-500);margin-bottom:24px;line-height:1.4}
+.pricing-features{list-style:none;margin-bottom:28px}
+.pricing-features li{padding:9px 0;font-size:13px;color:var(--gray-600);display:flex;align-items:center;gap:9px;border-bottom:1px solid var(--gray-100)}
+.pricing-features li:last-child{border-bottom:none}
+.pricing-features li::before{content:'✓';color:var(--accent);font-weight:700;font-size:13px;flex-shrink:0}
+.pricing-card .btn{width:100%;justify-content:center;padding:13px 24px}
+
+/* FINAL CTA */
+.final-cta{padding:100px 40px;text-align:center;background:var(--accent);position:relative;overflow:hidden}
+.final-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(255,255,255,0.1),transparent 70%)}
+.final-cta-inner{position:relative;z-index:1;max-width:650px;margin:0 auto}
+.final-cta h2{font-family:var(--serif);font-size:clamp(38px,5vw,58px);line-height:1.1;letter-spacing:-1.5px;color:white;margin-bottom:18px}
+.final-cta p{font-size:17px;color:rgba(255,255,255,0.75);margin-bottom:36px;line-height:1.6}
+
+/* FOOTER */
+footer{padding:36px 40px;background:var(--black);display:flex;align-items:center;justify-content:space-between}
+footer .logo{color:rgba(255,255,255,0.35);font-size:20px}
+footer .logo .logo-icon{opacity:0.4}
+footer p{font-size:12px;color:rgba(255,255,255,0.2)}
+footer .footer-links{display:flex;gap:24px}
+footer .footer-links a{font-size:12px;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.2s}
+footer .footer-links a:hover{color:rgba(255,255,255,0.6)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:14px 20px}
+  .nav-links a:not(.btn){display:none}
+  .hero{padding:120px 20px 60px}
+  .demo-section{padding:10px 20px 60px}
+  .demo-content{grid-template-columns:1fr}
+  .demo-input{border-right:none;border-bottom:1px solid var(--gray-200)}
+  .input-strip{gap:16px;flex-wrap:wrap}
+  .compare-row{grid-template-columns:1fr 1fr 1fr;font-size:12px}
+  .compare-cell{padding:10px 12px;font-size:11px}
+  .steps{grid-template-columns:1fr;gap:40px}
+  .steps::before{display:none}
+  .showcase-grid{grid-template-columns:1fr}
+  .impact-grid{grid-template-columns:1fr}
+  .superpowers-grid{grid-template-columns:1fr}
+  .audience-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr;max-width:400px;margin-left:auto;margin-right:auto}
+  .how-section,.showcase-section,.audience-section,.pricing-section,.compare-section,.impact-section,.superpowers-section{padding:70px 20px}
+  .math-section{padding:60px 20px}
+  .math-detail{gap:28px}
+  footer{flex-direction:column;gap:16px;text-align:center}
+  .hero-ctas{flex-direction:column}
+  .hero-ctas .btn{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo"><div class="logo-icon">S</div>Splitpost</a>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#" class="btn btn-primary">Get Early Access →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Early Access — Limited Spots</div>
+  <h1>One video becomes<br><em>weeks of content</em></h1>
+  <p class="hero-sub">Drop a video, podcast, image, or blog post. Splitpost extracts every idea and turns each one into ready-to-post content for every platform. Not one post per channel — dozens.</p>
+  <div class="hero-ctas">
+    <a href="#" class="btn btn-primary" style="font-size:16px;padding:15px 34px;">Get Early Access — Free →</a>
+    <a href="#how" class="btn btn-ghost">See how it works</a>
+  </div>
+  <p class="hero-note">No credit card · Free during beta · Cancel anytime</p>
+</section>
+
+<div class="input-strip">
+  <div class="input-type"><span class="it-icon">🎥</span> Video</div>
+  <div class="input-type"><span class="it-icon">🎙️</span> Podcast</div>
+  <div class="input-type"><span class="it-icon">🖼️</span> Image</div>
+  <div class="input-type"><span class="it-icon">📝</span> Text</div>
+  <div class="input-type"><span class="it-icon">🔗</span> URL</div>
+</div>
+
+<!-- DEMO -->
+<section class="demo-section">
+  <div class="demo-card">
+    <div class="demo-topbar">
+      <div class="demo-dot"></div><div class="demo-dot"></div><div class="demo-dot"></div>
+    </div>
+    <div class="demo-content">
+      <div class="demo-input">
+        <div class="demo-input-label">Your content</div>
+        <div class="demo-input-types">
+          <span class="demo-input-chip active">🔗 URL</span>
+          <span class="demo-input-chip">📤 Upload</span>
+          <span class="demo-input-chip">🖼️ Image</span>
+          <span class="demo-input-chip">📝 Text</span>
+        </div>
+        <div class="demo-url-bar">
+          <span class="demo-url-icon">🔗</span>
+          <span class="demo-url-text">https://youtube.com/watch?v=xQ3k5dF…</span>
+        </div>
+        <div class="demo-video-thumb"><div class="demo-play-btn">▶</div></div>
+        <div class="demo-meta">
+          <span>🕐 22:18</span>
+          <span>🎙️ Interview</span>
+          <span style="color:var(--green);font-weight:700;">✓ Ready</span>
+        </div>
+        <div class="demo-estimate">
+          ⚡ <strong>9 key ideas detected</strong> — we'll generate <strong>3–5 unique posts per platform</strong> plus clip suggestions. Want more? Hit "Generate More" anytime.
+        </div>
+      </div>
+      <div class="demo-output">
+        <div class="demo-output-label">42 outputs generated in 53s</div>
+        
+        <div class="output-divider">Social Media</div>
+        <div class="output-card">
+          <div class="output-icon oc-tw">🐦</div>
+          <div class="output-text"><h4>X / Twitter</h4><p>3 threads + 5 standalone tweets</p></div>
+          <span class="output-copy">Copy ↗</span>
+        </div>
+        <div class="output-card">
+          <div class="output-icon oc-th">🔗</div>
+          <div class="output-text"><h4>Threads</h4><p>3 posts optimized for Threads</p></div>
+          <span class="output-copy">Copy ↗</span>
+        </div>
+        <div class="output-card">
+          <div class="output-icon oc-li">💼</div>
+          <div class="output-text"><h4>LinkedIn</h4><p>4 story-driven posts, different angles</p></div>
+          <span class="output-copy">Copy ↗</span>
+        </div>
+        <div class="output-card">
+          <div class="output-icon oc-ig">📸</div>
+          <div class="output-text"><h4>Instagram</h4><p>2 carousels + 3 captions + hashtags</p></div>
+          <span class="output-copy">Copy ↗</span>
+        </div>
+        <div class="output-card">
+          <div class="output-icon oc-fb">👥</div>
+          <div class="output-text"><h4>Facebook</h4><p>3 community-style posts</p></div>
+          <span class="output-copy">Copy ↗</span>
+        </div>
+        <div class="output-card">
+          <div class="output-icon oc-tk">🎵</div>
+          <div class="output-text"><h4>TikTok / Reels / Shorts</h4><p>4 short-form scripts with hooks</p></div>
+          <span class="output-copy">Copy ↗</span>
+        </div>
+        <div class="output-card">
+          <div class="output-icon oc-pi">📌</div>
+          <div class="output-text"><h4>Pinterest</h4><p>3 pin descriptions + titles</p></div>
+          <span class="output-copy">Copy ↗</span>
+        </div>
+        
+        <div class="output-divider">Long-form & Local</div>
+        <div class="output-card">
+          <div class="output-icon oc-bl">📝</div>
+          <div class="output-text"><h4>Blog Post</h4><p>SEO-optimized, 1,000+ words with meta</p></div>
+          <span class="output-copy">Copy ↗</span>
+        </div>
+        <div class="output-card">
+          <div class="output-icon oc-nl">📧</div>
+          <div class="output-text"><h4>Newsletter</h4><p>Subject line + email teaser + CTA</p></div>
+          <span class="output-copy">Copy ↗</span>
+        </div>
+        <div class="output-card">
+          <div class="output-icon oc-gm">📍</div>
+          <div class="output-text"><h4>Google My Business</h4><p>Local post with CTA button</p></div>
+          <span class="output-copy">Copy ↗</span>
+        </div>
+        
+        <div class="output-divider">Video</div>
+        <div class="output-card">
+          <div class="output-icon oc-cl">✂️</div>
+          <div class="output-text"><h4>Clip Suggestions</h4><p>5 best moments with timestamps + hooks</p></div>
+          <span class="output-copy">View ↗</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<div class="proof-bar">
+  <p>Generates content for</p>
+  <div class="proof-logos">
+    <span>YouTube</span><span>TikTok</span><span>LinkedIn</span><span>Instagram</span>
+    <span>Facebook</span><span>Pinterest</span><span>Substack</span><span>Google</span>
+  </div>
+</div>
+
+<!-- COMPARISON -->
+<section class="compare-section" id="compare">
+  <div class="section-label">Why Splitpost</div>
+  <h2 class="section-title">You could use ChatGPT.<br>But you won't go back.</h2>
+  <p class="section-sub">Custom GPTs can repurpose content — if you spend 20 minutes copy-pasting, re-prompting, and reformatting. And you'd still get one post per platform, not five.</p>
+  <div class="compare-table">
+    <div class="compare-row header">
+      <div class="compare-cell"></div>
+      <div class="compare-cell">ChatGPT / Custom GPT</div>
+      <div class="compare-cell">Splitpost</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell label">Video/podcast as input</div>
+      <div class="compare-cell"><span class="x">✗</span> Transcribe manually first</div>
+      <div class="compare-cell"><span class="check">✓</span> Paste URL, done</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell label">Image as input</div>
+      <div class="compare-cell"><span class="x">✗</span> Upload + prompt each time</div>
+      <div class="compare-cell"><span class="check">✓</span> Drop image, get posts</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell label">Posts per idea</div>
+      <div class="compare-cell">1 per prompt</div>
+      <div class="compare-cell"><span class="check">✓</span> 3–5 per platform auto</div>
+    </div>
+    <div class="compare-row compare-highlight">
+      <div class="compare-cell label">Output from 20 min video</div>
+      <div class="compare-cell">~8 posts (manual effort)</div>
+      <div class="compare-cell">40–80+ posts, one click</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell label">Channels at once</div>
+      <div class="compare-cell"><span class="x">✗</span> One prompt per channel</div>
+      <div class="compare-cell"><span class="check">✓</span> All 10 in one click</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell label">Clip timestamp detection</div>
+      <div class="compare-cell"><span class="x">✗</span> Not possible</div>
+      <div class="compare-cell"><span class="check">✓</span> AI finds best moments</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell label">Brand voice memory</div>
+      <div class="compare-cell"><span class="x">✗</span> Re-explain every session</div>
+      <div class="compare-cell"><span class="check">✓</span> Set once, always on</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell label">Blog post from video</div>
+      <div class="compare-cell"><span class="x">✗</span> Manual multi-step</div>
+      <div class="compare-cell"><span class="check">✓</span> SEO-ready, auto-generated</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="section-label">How it works</div>
+  <h2 class="section-title">Three steps. Sixty seconds.<br>Weeks of content.</h2>
+  <p class="section-sub" style="margin-bottom:56px;">No editing skills. No prompting. No copy-pasting between tools.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-number">1</div>
+      <span class="step-icon">📥</span>
+      <h3>Drop anything</h3>
+      <p>Paste a YouTube URL, upload video or audio, drop an image, or paste text. From a 2-min clip to a 2-hour webinar.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <span class="step-icon">⚡</span>
+      <h3>AI extracts every idea</h3>
+      <p>Splitpost finds every key moment, insight, and story — then writes multiple unique posts per platform, each with a different angle.</p>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <span class="step-icon">🚀</span>
+      <h3>Copy, paste, post</h3>
+      <p>Browse by platform, pick your favorites, tweak if you want, and copy with one click. Content for weeks, ready in a minute.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHANNELS -->
+<section class="showcase-section" id="features">
+  <div class="showcase-inner">
+    <div class="section-label">10 channels</div>
+    <h2 class="section-title">Every idea extracted.<br>Every platform covered.</h2>
+    <p class="section-sub">Splitpost doesn't write one generic post per channel. It finds every insight in your content and creates multiple unique posts — each tailored to how that platform works.</p>
+    <div class="showcase-grid">
+      <div class="showcase-card">
+        <span class="showcase-card-icon">🐦</span>
+        <h3>Twitter/X & Threads</h3>
+        <p>Hook-first threads and standalone posts. Multiple angles per idea. Written for engagement, not just reach.</p>
+        <span class="platform-tag">X · Threads</span>
+      </div>
+      <div class="showcase-card">
+        <span class="showcase-card-icon">💼</span>
+        <h3>LinkedIn</h3>
+        <p>Story-driven posts with scroll-stopping openers. Professional tone, algorithm-optimized formatting.</p>
+        <span class="platform-tag">LinkedIn</span>
+      </div>
+      <div class="showcase-card">
+        <span class="showcase-card-icon">📸</span>
+        <h3>Instagram</h3>
+        <p>Carousel slide text, captions, and hashtag sets. Each carousel tells a complete micro-story.</p>
+        <span class="platform-tag">Instagram</span>
+      </div>
+      <div class="showcase-card">
+        <span class="showcase-card-icon">🎬</span>
+        <h3>TikTok / Reels / Shorts</h3>
+        <p>60-sec scripts with hooks optimized for the first 2 seconds. Timestamped to your source video.</p>
+        <span class="platform-tag">Short-Form Video</span>
+      </div>
+      <div class="showcase-card">
+        <span class="showcase-card-icon">👥</span>
+        <h3>Facebook</h3>
+        <p>Community-friendly posts for pages and groups. Conversational tone that drives comments and shares.</p>
+        <span class="platform-tag">Facebook</span>
+      </div>
+      <div class="showcase-card">
+        <span class="showcase-card-icon">📌</span>
+        <h3>Pinterest</h3>
+        <p>SEO-rich pin titles and descriptions. Optimized for search discovery and saves.</p>
+        <span class="platform-tag">Pinterest</span>
+      </div>
+      <div class="showcase-card">
+        <span class="showcase-card-icon">📝</span>
+        <h3>Blog Post</h3>
+        <p>Full SEO-optimized article with title, meta description, headers, and body. WordPress-ready.</p>
+        <span class="platform-tag">Blog / Website</span>
+      </div>
+      <div class="showcase-card">
+        <span class="showcase-card-icon">📧</span>
+        <h3>Newsletter</h3>
+        <p>Subject lines, email teasers, and CTAs. Drop into Substack, Beehiiv, or ConvertKit.</p>
+        <span class="platform-tag">Email</span>
+      </div>
+      <div class="showcase-card">
+        <span class="showcase-card-icon">📍</span>
+        <h3>Google My Business</h3>
+        <p>Local posts with CTA buttons for businesses. Show up in search without extra effort.</p>
+        <span class="platform-tag">Google</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUPERPOWERS -->
+<section class="superpowers-section">
+  <div class="superpowers-inner">
+    <div class="section-label">Superpowers</div>
+    <h2 class="section-title">Not just posts — intelligence built in.</h2>
+    <div class="superpowers-grid">
+      <div class="superpower-card">
+        <div class="superpower-icon-wrap"><span>✂️</span></div>
+        <div class="superpower-text">
+          <h3>Clip Suggestions</h3>
+          <p>AI watches your video and finds the 5 most clip-worthy moments — with exact timestamps, suggested hooks, and captions. You just trim and post.</p>
+        </div>
+      </div>
+      <div class="superpower-card">
+        <div class="superpower-icon-wrap"><span>🖼️</span></div>
+        <div class="superpower-text">
+          <h3>Image → Posts</h3>
+          <p>Drop an infographic, screenshot, product photo, or meme. The AI interprets what it sees and writes platform-native posts around it — no prompting required.</p>
+        </div>
+      </div>
+      <div class="superpower-card">
+        <div class="superpower-icon-wrap"><span>🎨</span></div>
+        <div class="superpower-text">
+          <h3>Brand Voice</h3>
+          <p>Set your tone, audience, and style once. Paste an example post. From that point on, every output sounds like you wrote it — not like AI.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="audience-section">
+  <div class="section-label">Built for</div>
+  <h2 class="section-title">If you create content for your business, this is for you</h2>
+  <div class="audience-grid">
+    <div class="audience-card">
+      <span class="audience-emoji">🎙️</span>
+      <h3>Podcasters & YouTubers</h3>
+      <p>Turn every episode into weeks of social content. Stop letting great conversations disappear after one upload.</p>
+    </div>
+    <div class="audience-card">
+      <span class="audience-emoji">🚀</span>
+      <h3>Solopreneurs & Founders</h3>
+      <p>Record once, be everywhere. No social media manager needed. Your 20-minute video fuels your entire month.</p>
+    </div>
+    <div class="audience-card">
+      <span class="audience-emoji">📈</span>
+      <h3>Marketing Teams & Agencies</h3>
+      <p>Scale content output without scaling headcount. Repurpose webinars, demos, and thought leadership instantly.</p>
+    </div>
+    <div class="audience-card">
+      <span class="audience-emoji">🏪</span>
+      <h3>Local Businesses</h3>
+      <p>Keep your Google, Facebook, and Instagram updated without hiring a marketer. One video, all channels covered.</p>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact-section">
+  <div class="impact-inner">
+    <div class="section-label">The real advantage</div>
+    <h2 class="section-title" style="max-width:700px;">Algorithms reward consistency.<br>Splitpost makes it effortless.</h2>
+    <p class="section-sub" style="max-width:620px;">Every platform's algorithm favors accounts that post frequently and consistently. The problem was never knowing this — it was having enough content to actually do it. That problem is solved now.</p>
+    
+    <div class="impact-grid">
+      <div class="impact-card">
+        <div class="impact-card-num">3–5×</div>
+        <div class="impact-card-text">
+          <h4>More reach with consistent posting</h4>
+          <p>LinkedIn accounts posting 5×/week get 3.5× more profile views. Instagram accounts posting daily see 2–3× higher reach. The algorithm isn't a mystery — it rewards volume.</p>
+        </div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-card-num">10</div>
+        <div class="impact-card-text">
+          <h4>Channels. One brand. Zero extra effort.</h4>
+          <p>Your audience isn't on one platform — they're scattered across ten. Omnipresence builds trust. When someone sees you on LinkedIn, then Instagram, then in their inbox — you become the obvious choice.</p>
+        </div>
+      </div>
+      <div class="impact-card">
+        <div class="impact-card-num">1:1</div>
+        <div class="impact-card-text">
+          <h4>The content-to-growth ratio changes</h4>
+          <p>Most businesses create one piece and post it once. Splitpost turns that same piece into weeks of platform-native content — the same effort, 10× the surface area. That's not a hack. That's leverage.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-bottom">
+      <p>The businesses that win on social aren't more creative — they're more <em>present</em>. Splitpost gives you the posting frequency of a 5-person content team. For $19/month.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MATH -->
+<section class="math-section">
+  <div class="math-inner">
+    <div class="math-equation">1 video = <span class="num-accent">weeks of content</span><br>across 10 channels</div>
+    <p class="math-sub">Every key idea extracted. Multiple posts per platform. All in your voice. All in 60 seconds.</p>
+    <div class="math-detail">
+      <div class="math-stat">
+        <div class="math-stat-num">40–80+</div>
+        <div class="math-stat-label">unique posts per video</div>
+      </div>
+      <div class="math-stat">
+        <div class="math-stat-num">10</div>
+        <div class="math-stat-label">channels covered</div>
+      </div>
+      <div class="math-stat">
+        <div class="math-stat-num">60s</div>
+        <div class="math-stat-label">instead of 4+ hours</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-label">Simple pricing</div>
+  <h2 class="section-title">Start free. Scale when ready.</h2>
+  <p class="section-sub" style="margin-bottom:40px;">No hidden fees. No contracts. Cancel anytime.</p>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Free</div>
+      <div class="pricing-price">$0 <span>/mo</span></div>
+      <p class="pricing-desc">Try it. No strings attached.</p>
+      <ul class="pricing-features">
+        <li>3 repurposes per month</li>
+        <li>Top 3 ideas per platform</li>
+        <li>Videos up to 10 min</li>
+        <li>5 channels</li>
+        <li>URL, text + image input</li>
+      </ul>
+      <a href="#" class="btn btn-ghost" style="border-radius:12px;">Start Free</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-tier">Starter</div>
+      <div class="pricing-price">$19 <span>/mo</span></div>
+      <p class="pricing-desc">For creators who post consistently.</p>
+      <ul class="pricing-features">
+        <li>30 repurposes per month</li>
+        <li>All ideas extracted + "Generate More"</li>
+        <li>Videos up to 60 min</li>
+        <li>All 10 channels + blog post</li>
+        <li>Clip suggestions with timestamps</li>
+        <li>Brand voice training</li>
+      </ul>
+      <a href="#" class="btn btn-primary" style="border-radius:12px;">Get Early Access →</a>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Pro</div>
+      <div class="pricing-price">$39 <span>/mo</span></div>
+      <p class="pricing-desc">For power creators and agencies.</p>
+      <ul class="pricing-features">
+        <li>100 repurposes per month</li>
+        <li>Everything in Starter</li>
+        <li>Videos up to 120 min</li>
+        <li>Priority processing</li>
+        <li>Multiple brand voices</li>
+        <li>Bulk repurpose (up to 5 at once)</li>
+      </ul>
+      <a href="#" class="btn btn-dark" style="border-radius:12px;">Get Early Access →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-inner">
+    <h2>Create once.<br>Post for weeks.</h2>
+    <p>Join the waitlist. Early access members get the Starter plan free for 3 months.</p>
+    <div class="hero-ctas" style="margin-bottom:16px;">
+      <a href="#" class="btn btn-white" style="font-size:16px;padding:16px 38px;">Join the Waitlist — Free →</a>
+    </div>
+    <p class="hero-note" style="color:rgba(255,255,255,0.45);">No credit card · Launching Q2 2026</p>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="logo"><div class="logo-icon">S</div>Splitpost</a>
+  <div class="footer-links">
+    <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a><a href="#">Twitter</a>
+  </div>
+  <p>© 2026 Splitpost. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
