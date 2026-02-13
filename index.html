@@ -86,6 +86,12 @@ h1 em{font-style:italic;color:var(--accent)}
 .hero-proof-stars svg{width:12px;height:12px}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
+/* Split blade reveal */
+.split-reveal-text{display:inline-block;position:relative;clip-path:inset(0 100% 0 0);animation:splitClip 0.8s ease 0.8s forwards}
+.split-reveal-text::before{content:'';position:absolute;left:0;top:10%;width:2px;height:80%;background:var(--accent);opacity:0;animation:splitBlade 0.8s ease 0.6s forwards}
+@keyframes splitClip{0%{clip-path:inset(0 100% 0 0)}100%{clip-path:inset(0 0% 0 0)}}
+@keyframes splitBlade{0%{opacity:1;left:0}100%{opacity:0;left:100%}}
+
 /* ===== INPUT STRIP ===== */
 .input-strip{padding:32px 40px;text-align:center;animation:fadeUp .6s ease .55s both}
 .input-strip-label{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gray-400);margin-bottom:16px}
@@ -276,7 +282,7 @@ footer a:hover{color:white}
 <!-- HERO -->
 <section class="hero">
   <div class="hero-badge">● Now Live</div>
-  <h1>One piece becomes<br><em>weeks of content</em></h1>
+  <h1>One piece becomes<br><em class="split-reveal-text">weeks of content</em></h1>
   <p class="hero-sub">Drop a video, podcast, image, or blog post. Splitpost extracts every idea and turns each one into ready-to-post content for every platform. Not one post per channel. Dozens.</p>
   <div class="hero-ctas">
     <a href="https://app.splitpost.app/login" class="btn-main">Start splitting for free <span class="arr">→</span></a>
