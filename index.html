@@ -56,8 +56,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:fl
 .nav-links{display:flex;align-items:center;gap:36px}
 .nav-links a{font-size:14px;font-weight:500;color:var(--gray-500);transition:color 0.2s}
 .nav-links a:hover{color:var(--black)}
-.nav-cta{background:var(--black)!important;color:white!important;padding:10px 22px;border-radius:10px;font-weight:600;font-size:13px;transition:all 0.2s}
-.nav-cta:hover{background:var(--gray-800)!important;transform:translateY(-1px)}
+.nav-cta{position:relative;display:inline-flex;align-items:center;color:white!important;padding:10px 22px;border-radius:10px;font-weight:600;font-size:13px;background:transparent!important;text-decoration:none;cursor:pointer}
+.nav-cta .q1,.nav-cta .q2,.nav-cta .q3,.nav-cta .q4{position:absolute;inset:0;background:var(--black);border-radius:10px;transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.nav-cta .q1{clip-path:inset(0 50.5% 50.5% 0)}
+.nav-cta .q2{clip-path:inset(0 0 50.5% 50.5%)}
+.nav-cta .q3{clip-path:inset(50.5% 50.5% 0 0)}
+.nav-cta .q4{clip-path:inset(50.5% 0 0 50.5%)}
+.nav-cta:hover .q1{transform:translate(-2px,-2px)}
+.nav-cta:hover .q2{transform:translate(2px,-2px)}
+.nav-cta:hover .q3{transform:translate(-2px,2px)}
+.nav-cta:hover .q4{transform:translate(2px,2px)}
+.nav-cta .sv,.nav-cta .sh{position:absolute;background:var(--accent);z-index:1;transition:all .25s ease}
+.nav-cta .sv{left:50%;top:15%;bottom:15%;width:0;transform:translateX(-50%)}
+.nav-cta .sh{top:50%;left:15%;right:15%;height:0;transform:translateY(-50%)}
+.nav-cta:hover .sv{width:2px}
+.nav-cta:hover .sh{height:2px}
+.nav-cta span.nav-text{position:relative;z-index:2}
 
 /* ===== HERO ===== */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 40px 60px;position:relative}
@@ -68,8 +82,23 @@ h1{font-family:var(--serif);font-size:clamp(44px,6.5vw,88px);line-height:1.0;let
 h1 em{font-style:italic;color:var(--accent)}
 .hero-sub{font-size:18px;color:var(--gray-600);max-width:520px;line-height:1.65;margin-bottom:36px;animation:fadeUp .6s ease .25s both}
 .hero-ctas{display:flex;gap:14px;align-items:center;animation:fadeUp .6s ease .35s both;flex-wrap:wrap;justify-content:center}
-.btn-main{display:inline-flex;align-items:center;gap:10px;background:var(--black);color:white;padding:15px 30px;border-radius:12px;font-size:15px;font-weight:600;transition:all .3s ease}
-.btn-main:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,0.12)}
+.btn-main{position:relative;display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:12px;font-size:15px;font-weight:600;color:white;background:transparent;text-decoration:none;cursor:pointer}
+.btn-main::before,.btn-main .q1,.btn-main .q2,.btn-main .q3,.btn-main .q4{position:absolute;inset:0;background:var(--black);border-radius:12px;transition:transform .35s cubic-bezier(.34,1.56,.64,1);content:''}
+.btn-main::before{display:none}
+.btn-main .q1{clip-path:inset(0 50.5% 50.5% 0)}
+.btn-main .q2{clip-path:inset(0 0 50.5% 50.5%)}
+.btn-main .q3{clip-path:inset(50.5% 50.5% 0 0)}
+.btn-main .q4{clip-path:inset(50.5% 0 0 50.5%)}
+.btn-main:hover .q1{transform:translate(-3px,-3px)}
+.btn-main:hover .q2{transform:translate(3px,-3px);transition-delay:.02s}
+.btn-main:hover .q3{transform:translate(-3px,3px);transition-delay:.04s}
+.btn-main:hover .q4{transform:translate(3px,3px);transition-delay:.06s}
+.btn-main .split-v,.btn-main .split-h{position:absolute;background:var(--accent);z-index:1;transition:all .25s ease}
+.btn-main .split-v{left:50%;top:20%;bottom:20%;width:0;transform:translateX(-50%)}
+.btn-main .split-h{top:50%;left:20%;right:20%;height:0;transform:translateY(-50%)}
+.btn-main:hover .split-v{width:2px}
+.btn-main:hover .split-h{height:2px}
+.btn-main span.btn-text{position:relative;z-index:2;display:inline-flex;align-items:center;gap:10px}
 .btn-main .arr{width:26px;height:26px;border-radius:6px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:13px;transition:transform .3s}
 .btn-main:hover .arr{transform:translateX(3px)}
 .btn-ghost{padding:15px 28px;border-radius:12px;font-size:14px;font-weight:600;color:var(--gray-600);border:1px solid var(--gray-200);transition:all .2s}
@@ -275,7 +304,7 @@ footer a:hover{color:white}
     <a href="#how">How it works</a>
     <a href="#features">Features</a>
     <a href="#pricing">Pricing</a>
-    <a href="https://app.splitpost.app/login" class="nav-cta">Start for Free →</a>
+    <a href="https://app.splitpost.app/login" class="nav-cta"><div class="q1"></div><div class="q2"></div><div class="q3"></div><div class="q4"></div><div class="sv"></div><div class="sh"></div><span class="nav-text">Start Splitting →</span></a>
   </div>
 </nav>
 
@@ -285,7 +314,7 @@ footer a:hover{color:white}
   <h1>One piece becomes<br><em class="split-reveal-text">weeks of content</em></h1>
   <p class="hero-sub">Drop a video, podcast, image, or blog post. Splitpost extracts every idea and turns each one into ready-to-post content for every platform. Not one post per channel. Dozens.</p>
   <div class="hero-ctas">
-    <a href="https://app.splitpost.app/login" class="btn-main">Start splitting for free <span class="arr">→</span></a>
+    <a href="https://app.splitpost.app/login" class="btn-main"><div class="q1"></div><div class="q2"></div><div class="q3"></div><div class="q4"></div><div class="split-v"></div><div class="split-h"></div><span class="btn-text">Start Splitting For Free <span class="arr">→</span></span></a>
     <a href="#how" class="btn-ghost">How it works</a>
   </div>
   <p class="hero-note">No credit card · 3 free splits · Cancel anytime</p>
@@ -491,7 +520,7 @@ footer a:hover{color:white}
         <li>Brand voice</li>
         <li>Priority support</li>
       </ul>
-      <a href="https://app.splitpost.app/login" class="price-btn">Start splitting →</a>
+      <a href="https://app.splitpost.app/login" class="price-btn">Start Splitting →</a>
     </div>
     <div class="price-card soon">
       <div class="price-label">Pro</div>
@@ -514,7 +543,7 @@ footer a:hover{color:white}
 <section class="final-cta">
   <h2>Stop creating.<br>Start <em style="font-style:italic;color:var(--accent)">splitting.</em></h2>
   <p>One piece of content. Every platform. Every format. Done.</p>
-  <a href="https://app.splitpost.app/login" class="btn-accent">Start for free →</a>
+  <a href="https://app.splitpost.app/login" class="btn-accent">Start Splitting →</a>
   <div class="final-note">No credit card · 3 free splits · Cancel anytime</div>
 </section>
 
@@ -527,11 +556,7 @@ footer a:hover{color:white}
   <div>
     <a href="/privacy">Privacy</a>
     <a href="/impressum">Impressum</a>
-    <a href="mailto:info@splitpost.app">Contact</a>
+    <a href="/cdn-cgi/l/email-protection#6c05020a032c1f1c0005181c031f18420d1c1c">Contact</a>
     <a href="https://x.com/TimonPavic" target="_blank">Twitter</a>
   </div>
-  <span>© 2026 Splitpost</span>
-</footer>
-
-</body>
-</html>
+  <span>© 2026 Spl
