@@ -201,7 +201,7 @@ h1 em{font-style:italic;color:var(--accent)}
 .powers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:960px;margin:48px auto 0}
 .power-card{padding:28px;border:1px solid rgba(255,255,255,0.08);border-radius:14px;transition:all .25s}
 .power-card:hover{border-color:rgba(242,101,34,0.3);background:rgba(255,255,255,0.03)}
-.power-card-icon{font-size:28px;margin-bottom:16px}
+.power-card-icon{margin-bottom:16px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(242,101,34,0.08);border-radius:10px}
 .power-card h3{font-size:16px;font-weight:700;margin-bottom:8px;color:white}
 .power-card p{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6}
 
@@ -210,7 +210,7 @@ h1 em{font-style:italic;color:var(--accent)}
 .audience-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:960px;margin:48px auto 0}
 .aud-card{padding:24px;border:1px solid var(--gray-200);border-radius:14px;text-align:center;transition:all .2s}
 .aud-card:hover{border-color:var(--accent)}
-.aud-card-icon{font-size:32px;margin-bottom:12px}
+.aud-card-icon{margin-bottom:12px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(242,101,34,0.08);border-radius:10px}
 .aud-card h3{font-size:14px;font-weight:700;margin-bottom:6px;color:var(--black)}
 .aud-card p{font-size:12px;color:var(--gray-500);line-height:1.5}
 
@@ -449,9 +449,9 @@ footer a:hover{color:white}
     <h2 class="sec-title">Not just posts. Intelligence built in.</h2>
   </div>
   <div class="powers-grid">
-    <div class="power-card"><div class="power-card-icon">✂️</div><h3>Clip Suggestions</h3><p>AI watches your video and finds the 5 most clip-worthy moments with exact timestamps, suggested hooks, and captions.</p></div>
-    <div class="power-card"><div class="power-card-icon">🖼️</div><h3>Image → Posts</h3><p>Drop an infographic, screenshot, or product photo. AI interprets what it sees and writes platform-native posts. No prompting.</p></div>
-    <div class="power-card"><div class="power-card-icon">🎨</div><h3>Brand Voice</h3><p>Set your tone, audience, and style once. Every output sounds like you wrote it, not like AI. Consistent across all channels.</p></div>
+    <div class="power-card"><div class="power-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12L12 12"/><path d="M20 4L8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 9.2L20 4"/></svg></div><h3>Clip Suggestions</h3><p>AI watches your video and finds the 5 most clip-worthy moments with exact timestamps, suggested hooks, and captions.</p></div>
+    <div class="power-card"><div class="power-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><h3>Image → Posts</h3><p>Drop an infographic, screenshot, or product photo. AI interprets what it sees and writes platform-native posts. No prompting.</p></div>
+    <div class="power-card"><div class="power-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><h3>Brand Voice</h3><p>Set your tone, audience, and style once. Every output sounds like you wrote it, not like AI. Consistent across all channels.</p></div>
   </div>
 </section>
 
@@ -462,10 +462,10 @@ footer a:hover{color:white}
     <h2 class="sec-title">If you create content,<br>this is for you</h2>
   </div>
   <div class="audience-grid">
-    <div class="aud-card"><div class="aud-card-icon">🎙️</div><h3>Podcasters & YouTubers</h3><p>Turn every episode into weeks of social content. Stop letting conversations disappear after one upload.</p></div>
-    <div class="aud-card"><div class="aud-card-icon">🚀</div><h3>Solopreneurs & Founders</h3><p>Record once, be everywhere. No social media manager needed. Your 20-minute video fuels your entire month.</p></div>
-    <div class="aud-card"><div class="aud-card-icon">📈</div><h3>Marketing Teams</h3><p>Scale content output without scaling headcount. Repurpose webinars, demos, and thought leadership instantly.</p></div>
-    <div class="aud-card"><div class="aud-card-icon">🏪</div><h3>Local Businesses</h3><p>Keep Google, Facebook, and Instagram updated without hiring a marketer. One video, all channels covered.</p></div>
+    <div class="aud-card"><div class="aud-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></div><h3>Podcasters & YouTubers</h3><p>Turn every episode into weeks of social content. Stop letting conversations disappear after one upload.</p></div>
+    <div class="aud-card"><div class="aud-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h3>Solopreneurs & Founders</h3><p>Record once, be everywhere. No social media manager needed. Your 20-minute video fuels your entire month.</p></div>
+    <div class="aud-card"><div class="aud-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><h3>Marketing Teams</h3><p>Scale content output without scaling headcount. Repurpose webinars, demos, and thought leadership instantly.</p></div>
+    <div class="aud-card"><div class="aud-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><h3>Local Businesses</h3><p>Keep Google, Facebook, and Instagram updated without hiring a marketer. One video, all channels covered.</p></div>
   </div>
 </section>
 
